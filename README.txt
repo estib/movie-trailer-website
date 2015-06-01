@@ -32,6 +32,6 @@ Once these files are in the same folder, run the file
 
 Author:
 
-These fresh_totoes.py was written by Udacity and slightly altered by 
+"fresh_tomatoes.py" was written by Udacity and slightly altered by 
 Stephen Lechner. All other files were written by Stephen Lechner in 
 order to complete a Udacity Nanodegree assignment. 
