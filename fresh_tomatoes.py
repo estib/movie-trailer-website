@@ -118,7 +118,8 @@ main_page_content = '''
 '''
 
 # A single movie entry html template
-# Edited by Stephen Lechner to add links to IMDb profiles and Fandango ticket-purchasing sites
+# Edited by Stephen Lechner to add links to IMDb profiles and Fandango
+#   ticket-purchasing sites
 movie_tile_content = '''
 <div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="{trailer_youtube_id}">
 <div data-toggle="modal" data-target="#trailer">
@@ -137,12 +138,20 @@ def create_movie_tiles_content(movies):
     content = ''
     for movie in movies:
         # Extract the youtube ID from the url
-        youtube_id_match = re.search(r'(?<=v=)[^&#]+', movie.trailer_youtube_url)
-        youtube_id_match = youtube_id_match or re.search(r'(?<=be/)[^&#]+', movie.trailer_youtube_url)
-        trailer_youtube_id = youtube_id_match.group(0) if youtube_id_match else None
+        youtube_id_match = (
+            re.search(r'(?<=v=)[^&#]+', movie.trailer_youtube_url)
+        )
+        youtube_id_match = (
+            youtube_id_match or
+            re.search(r'(?<=be/)[^&#]+', movie.trailer_youtube_url)
+        )
+        trailer_youtube_id = (
+            youtube_id_match.group(0) if youtube_id_match else None
+        )
 
         # Append the tile for the movie with its content filled in
-        # Edited by Stephen Lechner to add links to IMDb profiles and Fandango ticket-purchasing sites
+        # Edited by Stephen Lechner to add links to IMDb profiles and Fandango
+        #   ticket-purchasing sites
         content += movie_tile_content.format(
             movie_title=movie.title,
             imdb=movie.imdb_url,
@@ -156,8 +165,11 @@ def open_movies_page(movies):
   # Create or overwrite the output file
   output_file = open('fresh_tomatoes.html', 'w')
 
-  # Replace the placeholder for the movie tiles with the actual dynamically generated content
-  rendered_content = main_page_content.format(movie_tiles=create_movie_tiles_content(movies))
+  # Replace the placeholder for the movie tiles with the actual dynamically
+  #   generated content
+  rendered_content = main_page_content.format(
+      movie_tiles=create_movie_tiles_content(movies)
+  )
 
   # Output the file
   output_file.write(main_page_head + rendered_content)
